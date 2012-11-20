@@ -36,6 +36,7 @@ static const Layout layouts[] = {
     { .symbol = "[]=", .arrange = tile },    /* first entry is default */
 //  { .symbol = "><>", .arrange = NULL },    /* no layout function means floating behavior */
     { .symbol = "[M]", .arrange = monocle },
+    { .symbol = NULL , .arrange = NULL },
 };
 
 /* key definitions */
@@ -54,6 +55,9 @@ static const Layout layouts[] = {
 static Monitor* dirToMon_NoCycle(int dir);
 static void focusMon_NoCycle(const Arg* arg);
 static void tagMon_NoCycle(const Arg* arg);
+
+static void nextLayout(const Arg* arg);
+static void prevLayout(const Arg* arg);
 
 /* commands */
 static const char home[]      = "/home/sanford/";
@@ -117,7 +121,8 @@ static Key keys[] = {
     { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 //  { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 //  { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
-    { MODKEY,                       XK_space,  togglefloating, {0} },
+//  { MODKEY,                       XK_space,  togglefloating, {0} },
+    { MODKEY,                       XK_space,  nextLayout,     {0} },
     { MODKEY | ShiftMask,           XK_space,  setmfact,       {.f = 1.5f} },
     { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
     { MODKEY | ShiftMask,           XK_0,      tag,            {.ui = ~0 } },
@@ -196,3 +201,22 @@ void tagMon_NoCycle(const Arg* arg)
     sendmon(selmon->sel, dirToMon_NoCycle(arg->i));
 }
 
+void nextLayout(const Arg* arg)
+{
+    Layout *l;
+    for (l=(Layout *)layouts;l != selmon->lt[selmon->sellt];l++);
+    if (l->symbol && (l + 1)->symbol)
+        setlayout(&((Arg) { .v = (l + 1) }));
+    else
+        setlayout(&((Arg) { .v = layouts }));
+}
+
+void prevLayout(const Arg* arg)
+{
+    Layout *l;
+    for (l=(Layout *)layouts;l != selmon->lt[selmon->sellt];l++);
+    if (l != layouts && (l - 1)->symbol)
+        setlayout(&((Arg) { .v = (l - 1) }));
+    else
+        setlayout(&((Arg) { .v = &layouts[LENGTH(layouts) - 2] }));
+}

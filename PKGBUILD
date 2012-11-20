@@ -18,7 +18,7 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	dwm.desktop)
 
 md5sums=('8bb00d4142259beb11e13473b81c0857'
-          'a8bdb6a4e65b9936d084e5f75bb5b3bc'
+         '237f7ca6ab4d08ad3384df111bf4a117'
          '939f403a71b6e85261d09fc3412269ee')
 
 _patches=(
