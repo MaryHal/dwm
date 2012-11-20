@@ -60,12 +60,11 @@ static void nextLayout(const Arg* arg);
 static void prevLayout(const Arg* arg);
 
 /* commands */
-static const char home[]      = "/home/sanford/";
-static const char scriptDir[] = "/home/sanford/bin/";
+#define HOME "/home/sanford/";
+#define SCRIPT_DIR "/home/sanford/bin/";
 
 static const char terminal[] = "urxvtc";
 static const char *termcmd[]  = { terminal, NULL };
-
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, "-p", ">",  NULL };
 
 static const char *alsamixer[]  = { terminal, "-e", "alsamixer", NULL };
@@ -87,12 +86,12 @@ static Key keys[] = {
 
     { MODKEY,                       XK_v,      spawn,          {.v = alsamixer } },
     { MODKEY,                       XK_n,      spawn,          {.v = ncmpcpp } },
-    { MODKEY,                       XK_r,      spawn,          SHCMD("/home/sanford/bin/randwall") },
-    { MODKEY,                       XK_s,      spawn,          SHCMD("/home/sanford/bin/menu/shutdownmenu") },
-    { MODKEY,                       XK_i,      spawn,          SHCMD("/home/sanford/bin/menu/brightnessmenu") },
-    { MODKEY,                       XK_o,      spawn,          SHCMD("/home/sanford/bin/menu/mpcmenu") },
-    { MODKEY,                       XK_u,      spawn,          SHCMD("/home/sanford/bin/menu/infomenu") },
-    { MODKEY,                       XK_m,      spawn,          SHCMD("/home/sanford/bin/menu2") },
+    { MODKEY,                       XK_r,      spawn,          SHCMD("SCRIPT_DIR/randwall") },
+    { MODKEY,                       XK_s,      spawn,          SHCMD("SCRIPT_DIR/menu/shutdownmenu") },
+    { MODKEY,                       XK_i,      spawn,          SHCMD("SCRIPT_DIR/menu/brightnessmenu") },
+    { MODKEY,                       XK_o,      spawn,          SHCMD("SCRIPT_DIR/menu/mpcmenu") },
+    { MODKEY,                       XK_u,      spawn,          SHCMD("SCRIPT_DIR/menu/infomenu") },
+    { MODKEY,                       XK_m,      spawn,          SHCMD("SCRIPT_DIR/menu2") },
 
     { 0,         XF86XK_AudioLowerVolume,      spawn,          {.v = volumeDown } },
     { 0,         XF86XK_AudioRaiseVolume,      spawn,          {.v = volumeUp } },
