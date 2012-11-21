@@ -22,9 +22,11 @@ md5sums=('8bb00d4142259beb11e13473b81c0857'
          '939f403a71b6e85261d09fc3412269ee')
 
 _patches=(
+00-dwm-6.0-buildflags.diff
 01-dwm-6.0-pertag.diff
 02-dwm-6.0-push.diff
 03-dwm-6.0-statusallmons.diff
+04-dwm-6.0-xft.diff
 )
 
 build() {
