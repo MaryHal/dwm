@@ -1,6 +1,5 @@
 #include "push.c"
 #include <X11/XF86keysym.h>
-/* See LICENSE file for copyright and license details. */
 
 /* appearance */
 //static const char font[]          = "-*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*";
@@ -24,7 +23,7 @@ static const Rule rules[] = {
     /* class      instance    title       tags mask     isfloating   monitor */
     { "Gimp",     NULL,       NULL,       0,            True,        -1 },
     { "URxvt",    NULL,      "ncmpcpp",   0,            True,        -1 },
-    { "Skype",    NULL,       NULL,       0,            True,        -1 },
+//  { "Skype",    NULL,       NULL,       0,            True,        -1 },
 //  { "Firefox",  NULL,       NULL,       1 << 8,       False,       -1 },
 };
 
@@ -128,6 +127,7 @@ static Key keys[] = {
     { MODKEY,                       XK_e,      focusMon_NoCycle,       {.i = +1 } },
     { MODKEY | ShiftMask,           XK_w,      tagMon_NoCycle,         {.i = -1 } },
     { MODKEY | ShiftMask,           XK_e,      tagMon_NoCycle,         {.i = +1 } },
+
     TAGKEYS(                        XK_1,                      0)
     TAGKEYS(                        XK_2,                      1)
     TAGKEYS(                        XK_3,                      2)
@@ -218,3 +218,4 @@ void prevLayout(const Arg* arg)
     else
         setlayout(&((Arg) { .v = &layouts[LENGTH(layouts) - 2] }));
 }
+
