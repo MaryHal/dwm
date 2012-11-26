@@ -53,7 +53,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* Custom Functions */
-static Monitor* dirToMon_NoCycle(int dir);
+static Monitor* dirToMon_NoCycle(int dir);    // This should probably be a patch...
 static void focusMon_NoCycle(const Arg* arg);
 static void tagMon_NoCycle(const Arg* arg);
 
@@ -76,6 +76,8 @@ static const char *mpcPrev[]    = { "mpc", "prev", "-q", NULL };
 static const char *mpcNext[]    = { "mpc", "next", "-q", NULL };
 static const char *mpcPlay[]    = { "mpc", "toggle", "-q", NULL };
 static const char *mpcStop[]    = { "mpc", "stop", "-q", NULL };
+
+#define SCRIPT_DIR "/home/sanford/bin/"
 
 static Key keys[] = {
     /* modifier                     key        function        argument */
@@ -115,10 +117,10 @@ static Key keys[] = {
     { MODKEY,                       XK_Return, zoom,           {0} },
 //  { MODKEY,                       XK_Tab,    view,           {0} },
     { MODKEY | ShiftMask,           XK_c,      killclient,     {0} },
-    { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+//  { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 //  { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 //  { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
-//  { MODKEY,                       XK_space,  togglefloating, {0} },
+    { MODKEY,                       XK_t,      togglefloating, {0} },
     { MODKEY,                       XK_space,  nextLayout,     {0} },
     { MODKEY | ShiftMask,           XK_space,  setmfact,       {.f = 1.5f} },
     { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -218,4 +220,3 @@ void prevLayout(const Arg* arg)
     else
         setlayout(&((Arg) { .v = &layouts[LENGTH(layouts) - 2] }));
 }
-
