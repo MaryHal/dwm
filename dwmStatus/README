@@ -1,0 +1,15 @@
+DWM Status
+
+A Status bar for dwm.
+
+This is "hardcoded" for my system and was not meant to be flexible.  Flexibility costs memory and processor time.
+
+This can, however, be used as a template for your own status bar app.
+
+Note that this was written to work with the status colors patch and use symbols from the terminus2 font.  Both the colors and the symbols are int the format strings of the sprintf commands.  However, as they are mostly nonprintable they can show up oddly, or not at all, depending on your editor.
+
+To remove the dependecy on status colors and terminus2 font, simply remove these characters from the format strings.
+
+PS: Audio information is retrieved from a file in my home directory.
+This file is updated by whenever the volume is changed by my XF86Vol* keybindings.
+This is much more efficient that querying the actual volume from alsa every second.
