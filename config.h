@@ -77,6 +77,8 @@ static const char *mpcNext[]    = { "mpc", "next", "-q", NULL };
 static const char *mpcPlay[]    = { "mpc", "toggle", "-q", NULL };
 static const char *mpcStop[]    = { "mpc", "stop", "-q", NULL };
 
+static const char *mouseMove[]  = { "xdotool", "mousemove", "0", "1080", NULL };
+
 #define SCRIPT_DIR "/home/sanford/bin/"
 
 static Key keys[] = {
@@ -86,6 +88,7 @@ static Key keys[] = {
 
     { MODKEY,                       XK_v,      spawn,          {.v = alsamixer } },
     { MODKEY,                       XK_n,      spawn,          {.v = ncmpcpp } },
+    { MODKEY,                       XK_q,      spawn,          {.v = mouseMove } },
     { MODKEY,                       XK_r,      spawn,          SHCMD("/home/sanford/bin/randwall") },
     { MODKEY,                       XK_s,      spawn,          SHCMD("/home/sanford/bin/menu/shutdownmenu") },
     { MODKEY,                       XK_i,      spawn,          SHCMD("/home/sanford/bin/menu/brightnessmenu") },
