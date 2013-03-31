@@ -3,8 +3,9 @@
 
 /* appearance */
 //static const char font[]          = "-*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*";
-//static const char font[]	    = "Inconsolata:Semibold:size=9:antialias=true:hinting=true";
-static const char font[]	    = "Inconsolata:bold:size=9";
+//static const char font[]          = "Inconsolata:Semibold:size=9:antialias=true:hinting=true";
+static const char font[]            =
+    "Inconsolata:bold:size=9";
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
 static const char normfgcolor[]     = "#bbbbbb";
@@ -77,7 +78,7 @@ static const char *mpcNext[]    = { "mpc", "next", "-q", NULL };
 static const char *mpcPlay[]    = { "mpc", "toggle", "-q", NULL };
 static const char *mpcStop[]    = { "mpc", "stop", "-q", NULL };
 
-static const char *mouseMove[]  = { "xdotool", "mousemove", "0", "1080", NULL };
+static const char *mouseMove[]  = { "swarp", "0", "1080", NULL };
 
 #define SCRIPT_DIR "/home/sanford/bin/"
 
