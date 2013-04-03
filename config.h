@@ -4,8 +4,7 @@
 /* appearance */
 //static const char font[]          = "-*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*";
 //static const char font[]          = "Inconsolata:Semibold:size=9:antialias=true:hinting=true";
-static const char font[]            =
-    "Inconsolata:bold:size=9";
+static const char font[]            = "Inconsolata:bold:size=9";
 static const char normbordercolor[] = "#444444";
 static const char normbgcolor[]     = "#222222";
 static const char normfgcolor[]     = "#bbbbbb";
@@ -36,7 +35,7 @@ static const Bool  resizehints = False; /* True means respect size hints in tile
 static const Layout layouts[] = {
     /* symbol           arrange function */
     { .symbol = "[]=", .arrange = tile },    /* first entry is default */
-//  { .symbol = "><>", .arrange = NULL },    /* no layout function means floating behavior */
+    { .symbol = "><>", .arrange = NULL },    /* no layout function means floating behavior */
     { .symbol = "[M]", .arrange = monocle },
     { .symbol = NULL , .arrange = NULL },
 };
@@ -87,6 +86,7 @@ static Key keys[] = {
     { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
     { MODKEY | ShiftMask,           XK_Return, spawn,          {.v = termcmd } },
 
+    // Custom Commands
     { MODKEY,                       XK_v,      spawn,          {.v = alsamixer } },
     { MODKEY,                       XK_n,      spawn,          {.v = ncmpcpp } },
     { MODKEY,                       XK_q,      spawn,          {.v = mouseMove } },
@@ -95,8 +95,9 @@ static Key keys[] = {
     { MODKEY,                       XK_i,      spawn,          SHCMD("/home/sanford/bin/menu/brightnessmenu") },
     { MODKEY,                       XK_o,      spawn,          SHCMD("/home/sanford/bin/menu/mpcmenu") },
     { MODKEY,                       XK_u,      spawn,          SHCMD("/home/sanford/bin/menu/infomenu") },
-    { MODKEY,                       XK_m,      spawn,          SHCMD("/home/sanford/bin/menu2") },
+    // { MODKEY,                       XK_m,      spawn,          SHCMD("/home/sanford/bin/menu2") },
 
+    // Media Keys
     { 0,         XF86XK_AudioLowerVolume,      spawn,          {.v = volumeDown } },
     { 0,         XF86XK_AudioRaiseVolume,      spawn,          {.v = volumeUp } },
     { 0,                XF86XK_AudioMute,      spawn,          {.v = volumeMute } },
@@ -106,34 +107,45 @@ static Key keys[] = {
     { 0,                XF86XK_AudioPlay,      spawn,          {.v = mpcPlay} },
     { 0,                XF86XK_AudioStop,      spawn,          {.v = mpcStop} },
 
+    // Statusbar
     { MODKEY,                       XK_b,      togglebar,      {0} },
+
+    // Shifting Focus
     { MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
     { MODKEY,                       XK_Tab,    focusstack,     {.i = +1 } },
     { MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
     { MODKEY | ShiftMask,           XK_Tab,    focusstack,     {.i = -1 } },
+
+    // Shifting Windows
     { MODKEY | ShiftMask,           XK_j,      pushdown,       {0} },
     { MODKEY | ShiftMask,           XK_k,      pushup,         {0} },
     { MODKEY,                       XK_comma,  incnmaster,     {.i = +1 } },
     { MODKEY,                       XK_period, incnmaster,     {.i = -1 } },
+    { MODKEY | ShiftMask,           XK_c,      killclient,     {0} },
+    { MODKEY,                       XK_Return, zoom,           {0} },
+    // { MODKEY,                       XK_Tab,    view,           {0} },
+
+    // Setting Master Ratio
     { MODKEY,                       XK_h,      setmfact,       {.f = -0.01} },
     { MODKEY,                       XK_l,      setmfact,       {.f = +0.01} },
     { MODKEY,                       XK_g,      setmfact,       {.f = 0.5 } },
-    { MODKEY,                       XK_Return, zoom,           {0} },
-//  { MODKEY,                       XK_Tab,    view,           {0} },
-    { MODKEY | ShiftMask,           XK_c,      killclient,     {0} },
-//  { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-//  { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-//  { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },
-    { MODKEY,                       XK_t,      togglefloating, {0} },
-    { MODKEY,                       XK_space,  nextLayout,     {0} },
     { MODKEY | ShiftMask,           XK_space,  setmfact,       {.f = 1.5f} },
-    { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-    { MODKEY | ShiftMask,           XK_0,      tag,            {.ui = ~0 } },
+
+    // Changing Layouts
+    { MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+    { MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+    { MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+    // { MODKEY,                       XK_space,  nextLayout,     {0} },
+
+    { MODKEY,                       XK_space,      togglefloating, {0} },
+
+    // Monitor Focus / Taggin
     { MODKEY,                       XK_w,      focusMon_NoCycle,       {.i = -1 } },
     { MODKEY,                       XK_e,      focusMon_NoCycle,       {.i = +1 } },
     { MODKEY | ShiftMask,           XK_w,      tagMon_NoCycle,         {.i = -1 } },
     { MODKEY | ShiftMask,           XK_e,      tagMon_NoCycle,         {.i = +1 } },
-
+    { MODKEY,                       XK_0,      view,           {.ui = ~0 } },
+    { MODKEY | ShiftMask,           XK_0,      tag,            {.ui = ~0 } },
     TAGKEYS(                        XK_1,                      0)
     TAGKEYS(                        XK_2,                      1)
     TAGKEYS(                        XK_3,                      2)
